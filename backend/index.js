@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3").verbose();
 const { v4: uuidv4 } = require("uuid");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -304,11 +304,62 @@ app.delete("/api/cart", (req, res) => {
   });
 });
 
+// Place order - reduces stock and clears cart
+app.post("/api/orders", (req, res) => {
+  // Get all cart items first
+  db.all("SELECT * FROM cart", (err, cartItems) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (cartItems.length === 0) {
+      return res.status(400).json({ error: "Cart is empty" });
+    }
+
+    // Process each cart item to update stock
+    let processed = 0;
+    let hasError = false;
+
+    cartItems.forEach((item) => {
+      // Update stock for each product in cart
+      db.run(
+        "UPDATE products SET stock = stock - ? WHERE id = ?",
+        [item.quantity, item.productId],
+        function (updateErr) {
+          if (updateErr) {
+            hasError = true;
+            if (!res.headersSent) {
+              return res.status(500).json({ error: updateErr.message });
+            }
+          }
+
+          processed++;
+
+          // When all items processed, clear cart
+          if (processed === cartItems.length && !hasError) {
+            db.run("DELETE FROM cart", (clearErr) => {
+              if (clearErr) {
+                return res.status(500).json({ error: clearErr.message });
+              }
+              res.json({
+                message: "Order placed successfully",
+                processedItems: cartItems.length,
+              });
+            });
+          }
+        }
+      );
+    });
+  });
+});
+
 // Start server
 console.log("Starting server...");
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-  console.log("API endpoints available at /api/products and /api/cart");
+  console.log(
+    "API endpoints available at /api/products, /api/cart, and /api/orders"
+  );
 });
 
 // Graceful shutdown

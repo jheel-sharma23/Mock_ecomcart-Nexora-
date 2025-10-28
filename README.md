@@ -4,16 +4,32 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 
 ## ✨ Features
 
+### Core Features
+
 - **Product Catalog**: Browse available products with real-time stock information
+- **Product Detail Modal**: Click any product to view detailed information in a beautiful modal
 - **Smart Cart Integration**: Product cards show "Added to Cart" status with current quantity
+- **Click to Remove**: Click on "Added to Cart" status to instantly remove the product from cart
 - **Quick Quantity Increase**: Add more items directly from product cards
-- **Shopping Cart**: Add, update, and remove items from your cart
+- **Shopping Cart**: Slide-out drawer interface for managing cart items
+- **Order Confirmation Modal**: Beautiful confirmation modal after checkout (replaces alert)
+- **Real-time Stock Updates**: Stock automatically decreases when orders are placed
 - **Real-time Updates**: Cart updates instantly reflect product availability
 - **Stock Management**: Prevents adding more items than available in stock
+- **Recently Viewed**: Tracks and stores recently viewed products
 - **Modern UI**: Beautiful, responsive design with smooth animations
 - **Search & Filter**: Search products and filter by price range
 - **Auto-close Cart**: Cart automatically closes after successful order placement
 - **RESTful API**: Clean, well-structured backend API
+
+### User Experience Enhancements
+
+- Click product images or names to view detailed information
+- Large product images in detail modal
+- Smooth animations and transitions
+- Toast notifications for all actions
+- Mobile-responsive design
+- Intuitive cart management
 
 ## 🏗️ Tech Stack
 
@@ -42,12 +58,14 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 **1. Install dependencies**
 
 For backend:
+
 ```bash
 cd backend
 npm install
 ```
 
 For frontend:
+
 ```bash
 cd frontend
 npm install
@@ -56,6 +74,7 @@ npm install
 **2. Start the Backend Server**
 
 Open a terminal and run:
+
 ```bash
 cd backend
 npm start
@@ -66,6 +85,7 @@ Backend runs on `http://localhost:3000`
 **3. Start the Frontend (in a new terminal)**
 
 Open another terminal and run:
+
 ```bash
 cd frontend
 npm run dev
@@ -80,12 +100,14 @@ Frontend runs on `http://localhost:5173`
 Run both servers in separate terminals:
 
 Terminal 1:
+
 ```powershell
 cd backend
 npm start
 ```
 
 Terminal 2:
+
 ```powershell
 cd frontend
 npm run dev
@@ -126,6 +148,10 @@ mock-ecommerce-cart/
 - `DELETE /api/cart/:id` - Remove item from cart
 - `DELETE /api/cart` - Clear entire cart
 
+### Orders
+
+- `POST /api/orders` - Place order (reduces stock and clears cart)
+
 ## 🎨 Features in Detail
 
 ### Product Display
@@ -136,6 +162,7 @@ mock-ecommerce-cart/
 - Out-of-stock indicators
 - **Cart Status Display**: Products show "✓ Added to Cart (quantity)" when in cart
 - **Quick Add More**: Increase quantity button visible on product cards when item is in cart
+- **Easy Removal**: Click on cart status badge to remove item from cart (hover shows red background for confirmation)
 
 ### Shopping Cart
 
@@ -146,6 +173,7 @@ mock-ecommerce-cart/
 - Real-time total calculation
 - Stock validation
 - **Auto-close**: Cart drawer closes automatically after successful order placement
+- **Stock Reduction**: Product stock automatically decreases after order placement
 
 ## 🎯 Future Enhancements
 
@@ -216,6 +244,7 @@ Products are seeded automatically on first run. To add more products, you can ei
 ## 📸 Screenshots
 
 Screenshots coming soon! The app features:
+
 - Beautiful gradient background with product cards
 - Slide-out cart drawer
 - Cart status indicators on product cards

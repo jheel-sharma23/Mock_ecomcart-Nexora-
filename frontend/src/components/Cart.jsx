@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart }) {
+function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onClearCart, onPlaceOrder }) {
   const [isUpdating, setIsUpdating] = useState(false)
 
   const getTotal = () => {
@@ -85,9 +85,9 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCl
               <button 
                 onClick={() => {
                   const orderNumber = 'ORD-' + Date.now()
-                  alert(`Order placed successfully!\nOrder Number: ${orderNumber}\nTotal: ₹${getTotal().toLocaleString('en-IN')}\n\nThank you for your purchase!`)
-                  onClearCart()
-                  onClose()
+                  const total = getTotal()
+                  const itemCount = getTotalItems()
+                  onPlaceOrder(orderNumber, total, itemCount)
                 }}
                 className="checkout-btn"
               >

@@ -3,6 +3,8 @@ import './App.css'
 import ProductCard from './components/ProductCard'
 import Cart from './components/Cart'
 import Toast from './components/Toast'
+import ProductDetailModal from './components/ProductDetailModal'
+import OrderConfirmationModal from './components/OrderConfirmationModal'
 
 const API_URL = '/api'
 
@@ -14,8 +16,11 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [toast, setToast] = useState(null)
-  const [sortBy, setSortBy] = useState('name')
+  const [sortBy, setSortBy] = useState('price-low')
   const [priceRange, setPriceRange] = useState({ min: 0, max: 85000 })
+  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [orderDetails, setOrderDetails] = useState(null)
+  const [recentlyViewed, setRecentlyViewed] = useState([])
 
   // Fetch products
   useEffect(() => {
@@ -131,6 +136,47 @@ function App() {
     }
   }
 
+  const placeOrder = async (orderNumber, total, itemCount) => {
+    try {
+      const response = await fetch(`${API_URL}/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Failed to place order')
+      }
+      
+      // Fetch updated products to reflect new stock levels
+      await fetchProducts()
+      
+      // Fetch cart to reflect it's been cleared (backend already cleared it)
+      await fetchCart()
+      
+      // Show order confirmation
+      setOrderDetails({ orderNumber, total, itemCount })
+      
+      // Close cart
+      setCartOpen(false)
+      
+    } catch (err) {
+      showToast(err.message, 'error')
+    }
+  }
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product)
+    // Add to recently viewed
+    setRecentlyViewed(prev => {
+      const filtered = prev.filter(p => p.id !== product.id)
+      return [product, ...filtered].slice(0, 5)
+    })
+  }
+
+  const handleOrderSubmit = (orderNumber, total, itemCount) => {
+    setOrderDetails({ orderNumber, total, itemCount })
+  }
+
   const getTotalItems = () => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0)
   }
@@ -149,8 +195,9 @@ function App() {
         case 'price-high':
           return b.price - a.price
         case 'name':
-        default:
           return a.name.localeCompare(b.name)
+        default:
+          return a.price - b.price
       }
     })
 
@@ -163,7 +210,7 @@ function App() {
         <div className="container">
           <div className="header-brand">
             <span className="logo">🛒</span>
-            <h1>TechShop</h1>
+            <h1>Vibe Commerce</h1>
           </div>
           <button className="cart-button" onClick={() => setCartOpen(true)}>
             🛍️ Cart ({getTotalItems()})
@@ -195,9 +242,9 @@ function App() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="sort-select"
               >
-                <option value="name">Sort by Name</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
+                <option value="name">Sort by Name</option>
               </select>
             </div>
             <div className="filter-container">
@@ -227,6 +274,8 @@ function App() {
                   cartItems={cartItems}
                   onAddToCart={addToCart}
                   onUpdateQuantity={updateCartItem}
+                  onRemoveFromCart={removeFromCart}
+                  onProductClick={handleProductClick}
                 />
               ))
             )}
@@ -241,7 +290,28 @@ function App() {
         onUpdateQuantity={updateCartItem}
         onRemoveItem={removeFromCart}
         onClearCart={clearCart}
+        onPlaceOrder={placeOrder}
       />
+
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          cartItems={cartItems}
+          onClose={() => setSelectedProduct(null)}
+          onAddToCart={addToCart}
+          onUpdateQuantity={updateCartItem}
+          onRemoveFromCart={removeFromCart}
+        />
+      )}
+
+      {orderDetails && (
+        <OrderConfirmationModal
+          orderNumber={orderDetails.orderNumber}
+          total={orderDetails.total}
+          itemCount={orderDetails.itemCount}
+          onClose={() => setOrderDetails(null)}
+        />
+      )}
 
       {toast && (
         <Toast

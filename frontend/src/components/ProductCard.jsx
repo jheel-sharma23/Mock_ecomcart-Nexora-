@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function ProductCard({ product, cartItems, onAddToCart, onUpdateQuantity }) {
+function ProductCard({ product, cartItems, onAddToCart, onUpdateQuantity, onRemoveFromCart, onProductClick }) {
   const [isAdding, setIsAdding] = useState(false)
 
   const cartItem = cartItems.find(item => item.productId === product.id)
@@ -19,17 +19,23 @@ function ProductCard({ product, cartItems, onAddToCart, onUpdateQuantity }) {
     }
   }
 
+  const handleRemoveFromCart = async () => {
+    if (cartItem) {
+      await onRemoveFromCart(cartItem.id)
+    }
+  }
+
   const isInStock = product.stock > 0
 
   return (
     <div className="product-card">
-      <div className="product-image">
+      <div className="product-image" onClick={() => onProductClick(product)} style={{ cursor: 'pointer' }}>
         <img src={product.imageUrl || 'https://via.placeholder.com/300'} alt={product.name} />
         {!isInStock && <span className="out-of-stock">Out of Stock</span>}
       </div>
       
       <div className="product-info">
-        <h3>{product.name}</h3>
+        <h3 onClick={() => onProductClick(product)} style={{ cursor: 'pointer' }}>{product.name}</h3>
         <p className="product-description">{product.description}</p>
         
         <div className="product-footer">
@@ -42,7 +48,13 @@ function ProductCard({ product, cartItems, onAddToCart, onUpdateQuantity }) {
             <div className="product-actions">
               {isInCart ? (
                 <div className="added-to-cart">
-                  <span className="added-status">✓ Added to Cart ({cartQuantity})</span>
+                  <span 
+                    className="added-status clickable" 
+                    onClick={handleRemoveFromCart}
+                    title="Click to remove from cart"
+                  >
+                    ✓ Added to Cart ({cartQuantity})
+                  </span>
                   {cartItem && cartItem.quantity < product.stock && (
                     <button
                       onClick={handleIncreaseQuantity}
