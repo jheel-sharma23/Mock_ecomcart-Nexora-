@@ -2,7 +2,7 @@
 
 A full-stack e-commerce shopping cart application with React frontend and Express/Node.js backend.
 
-## ✨ Features
+##  Features
 
 ### Core Features
 
@@ -31,7 +31,7 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 - Mobile-responsive design
 - Intuitive cart management
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -46,7 +46,7 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 - SQLite database
 - CORS enabled for cross-origin requests
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -113,7 +113,7 @@ cd frontend
 npm run dev
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 mock-ecommerce-cart/
@@ -133,7 +133,7 @@ mock-ecommerce-cart/
 └── README.md
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Products
 
@@ -152,7 +152,7 @@ mock-ecommerce-cart/
 
 - `POST /api/orders` - Place order (reduces stock and clears cart)
 
-## 🎨 Features in Detail
+## Features in Detail
 
 ### Product Display
 
@@ -160,9 +160,9 @@ mock-ecommerce-cart/
 - Real-time stock display
 - Smart cart status indicators
 - Out-of-stock indicators
-- **Cart Status Display**: Products show "✓ Added to Cart (quantity)" when in cart
-- **Quick Add More**: Increase quantity button visible on product cards when item is in cart
-- **Easy Removal**: Click on cart status badge to remove item from cart (hover shows red background for confirmation)
+- Products show "✓ Added to Cart (quantity)" when in cart
+- Increase quantity button visible on product cards when item is in cart
+- Click on cart status badge to remove item from cart (hover shows red background for confirmation)
 
 ### Shopping Cart
 
@@ -172,10 +172,10 @@ mock-ecommerce-cart/
 - Clear entire cart
 - Real-time total calculation
 - Stock validation
-- **Auto-close**: Cart drawer closes automatically after successful order placement
-- **Stock Reduction**: Product stock automatically decreases after order placement
+- Cart drawer closes automatically after successful order placement
+- Product stock automatically decreases after order placement
 
-## 🎯 Future Enhancements
+##  Future Enhancements
 
 Potential features to add:
 
@@ -188,11 +188,7 @@ Potential features to add:
 - Reviews and ratings
 - Wishlist functionality
 
-## 📝 License
-
-ISC
-
-## 👨‍💻 Development
+##  Development
 
 ### Adding New Products
 
@@ -219,7 +215,7 @@ Products are seeded automatically on first run. To add more products, you can ei
 - productId (TEXT, FOREIGN KEY)
 - quantity (INTEGER)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 **Port already in use**
 
@@ -240,12 +236,3 @@ Products are seeded automatically on first run. To add more products, you can ei
 
 - Clear browser cache and refresh the page
 - Check that both frontend and backend servers are running
-
-## 📸 Screenshots
-
-Screenshots coming soon! The app features:
-
-- Beautiful gradient background with product cards
-- Slide-out cart drawer
-- Cart status indicators on product cards
-- Search and filter functionality

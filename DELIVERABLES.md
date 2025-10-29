@@ -1,8 +1,8 @@
-# 📦 Project Deliverables Guide
+# Project Deliverables Guide
 
 This document outlines what to include when submitting or deploying your Mock E-Commerce Cart project.
 
-## ✅ What to Include
+## What to Include
 
 ### Essential Files
 
@@ -51,7 +51,7 @@ build/                # Build files
 .DS_Store            # OS files
 ```
 
-## 🚀 Deployment Options
+##  Deployment Options
 
 ### Option 1: GitHub Repository
 
@@ -124,9 +124,7 @@ vercel --prod
 
 **Important:** Update `API_URL` in `App.jsx` to point to Heroku backend URL.
 
-## 📸 Recommended Screenshots
 
-Take screenshots and add them to a `screenshots/` folder:
 
 1. **Product Catalog View** - Show the main product grid
 2. **Product Detail Modal** - Show the modal when clicking a product
@@ -135,9 +133,7 @@ Take screenshots and add them to a `screenshots/` folder:
 5. **Order Confirmation** - Show the order confirmation modal
 6. **Mobile View** - Show responsive design
 
-**Add to README:**
 
-```markdown
 ## 📸 Screenshots
 
 ![Product Catalog](./screenshots/catalog.png)
@@ -146,18 +142,18 @@ Take screenshots and add them to a `screenshots/` folder:
 ![Order Confirmation](./screenshots/order-confirmation.png)
 ```
 
-## 📝 Document Checklist
+## Document Checklist
 
-- [x] README with setup instructions
-- [x] Code comments for complex logic
-- [x] API documentation in README
-- [x] Installation steps
-- [x] Troubleshooting guide
-- [x] Feature list
-- [ ] Screenshots (optional but recommended)
-- [ ] Demo video (optional)
+-  README with setup instructions
+-  Code comments for complex logic
+-  API documentation in README
+-  Installation steps
+-  Troubleshooting guide
+-  Feature list
+-  Screenshots
+-  Demo video
 
-## 🎯 What Makes a Good Submission
+##  What Makes a Good Submission
 
 ### 1. Code Quality
 
@@ -191,60 +187,14 @@ Take screenshots and add them to a `screenshots/` folder:
 - ✅ Loading indicators
 - ✅ Error messages
 
-## 🎬 Quick Submission Checklist
+##  Quick Submission Checklist
 
 Before submitting, ensure:
 
 ```bash
-# 1. Test everything works
 cd backend && npm start
 cd frontend && npm run dev
-# Test all features!
 
-# 2. Remove unnecessary files
-git add .
-git status  # Check what's included
-
-# 3. Clean up
-# Remove console.log statements (optional)
-# Ensure all features work
-# Test on fresh install
-
-# 4. Create submission package
-# Either commit to GitHub OR create ZIP file
-```
-
-## 📧 Submission Template (if submitting via email)
-
-**Subject:** Mock E-Commerce Cart - [Your Name]
-
-**Body:**
-
-```
-Dear [Recipient],
-
-Please find attached the Mock E-Commerce Cart project.
-
-Project Overview:
-- Full-stack e-commerce application
-- React frontend with modern UI
-- Express backend with SQLite database
-- Features: Product catalog, shopping cart, order placement, stock management
-
-Setup Instructions:
-1. Extract the ZIP file
-2. Install dependencies: npm install (in both backend/ and frontend/)
-3. Run backend: cd backend && npm start
-4. Run frontend: cd frontend && npm run dev
-5. Visit http://localhost:5173
-
-All instructions are detailed in the README.md file.
-
-Best regards,
-[Your Name]
-```
-
-## 🌐 GitHub Repository Template
 
 If creating a public GitHub repo, consider adding:
 
@@ -253,7 +203,6 @@ If creating a public GitHub repo, consider adding:
 3. **Contributing Guidelines** (`.github/CONTRIBUTING.md`)
 4. **License** (LICENSE file)
 
-## 🎁 Bonus: Create a Demo Video
 
 Record a quick 2-3 minute video showing:
 
@@ -264,7 +213,6 @@ Record a quick 2-3 minute video showing:
 
 Upload to YouTube and add link to README!
 
-## 📞 Need Help?
 
 If you encounter issues, check:
 
@@ -273,6 +221,5 @@ If you encounter issues, check:
 - Ensure Node.js version is compatible
 - Check browser console for errors
 
----
 
-**Good luck with your submission! 🚀**
+

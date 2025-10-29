@@ -28,3 +28,4 @@ function OrderConfirmationModal({ orderNumber, total, itemCount, onClose }) {
 
 export default OrderConfirmationModal
 
+
