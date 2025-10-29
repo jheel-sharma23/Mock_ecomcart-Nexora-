@@ -12,9 +12,26 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCl
   }
 
   const handleUpdateQuantity = async (cartId, newQuantity) => {
-    if (newQuantity < 1) return
+    if (newQuantity < 0) return
     setIsUpdating(true)
-    await onUpdateQuantity(cartId, newQuantity)
+    
+    if (newQuantity === 0) {
+      // Check if this is the last item before removing
+      const wasLastItem = cartItems.length === 1
+      
+      // Remove item when quantity reaches 0
+      await onRemoveItem(cartId)
+      
+      // Close cart if it was the last item
+      if (wasLastItem) {
+        setIsUpdating(false)
+        setTimeout(() => onClose(), 100)
+        return
+      }
+    } else {
+      await onUpdateQuantity(cartId, newQuantity)
+    }
+    
     setIsUpdating(false)
   }
 
@@ -46,7 +63,7 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCl
                   <div className="cart-item-controls">
                     <button
                       onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                      disabled={isUpdating}
+                      disabled={isUpdating || item.quantity <= 0}
                       className="quantity-btn"
                     >
                       −
@@ -58,12 +75,6 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCl
                       className="quantity-btn"
                     >
                       +
-                    </button>
-                    <button
-                      onClick={() => onRemoveItem(item.id)}
-                      className="remove-btn"
-                    >
-                      Remove
                     </button>
                   </div>
                 </div>
