@@ -1,4 +1,4 @@
-# 🛒 Mock E-Commerce Cart
+# Mock E-Commerce Cart
 
 A full-stack e-commerce shopping cart application with React frontend and Express/Node.js backend.
 
@@ -6,17 +6,16 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 
 ### Core Features
 
-- **Product Catalog**: Browse available products with real-time stock information
+- **Product Catalogue**: Browse available products with real-time stock information
 - **Product Detail Modal**: Click any product to view detailed information in a beautiful modal
-- **Smart Cart Integration**: Product cards show "Added to Cart" status with current quantity
+- **Cart Integration**: Product cards show "Added to Cart" status with current quantity
 - **Click to Remove**: Click on "Added to Cart" status to instantly remove the product from cart
-- **Quick Quantity Increase**: Add more items directly from product cards
+- **Quantity Increase**: Add more items directly from product cards
 - **Shopping Cart**: Slide-out drawer interface for managing cart items
-- **Order Confirmation Modal**: Beautiful confirmation modal after checkout (replaces alert)
+- **Order Confirmation Modal**: Beautiful confirmation modal after checkout
 - **Real-time Stock Updates**: Stock automatically decreases when orders are placed
 - **Real-time Updates**: Cart updates instantly reflect product availability
 - **Stock Management**: Prevents adding more items than available in stock
-- **Recently Viewed**: Tracks and stores recently viewed products
 - **Modern UI**: Beautiful, responsive design with smooth animations
 - **Search & Filter**: Search products and filter by price range
 - **Auto-close Cart**: Cart automatically closes after successful order placement
@@ -32,6 +31,7 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 - Intuitive cart management
 
 ## Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -46,6 +46,7 @@ A full-stack e-commerce shopping cart application with React frontend and Expres
 - SQLite database
 - CORS enabled for cross-origin requests
 
+## Getting Started
 ## Getting Started
 
 ### Prerequisites
@@ -119,7 +120,7 @@ npm run dev
 mock-ecommerce-cart/
 ├── backend/
 │   ├── index.js          # Express server and API routes
-│   ├── database.sqlite   # SQLite database (auto-created)
+│   ├── database.sqlite   # SQLite database
 │   └── package.json
 ├── frontend/
 │   ├── src/
@@ -133,6 +134,7 @@ mock-ecommerce-cart/
 └── README.md
 ```
 
+## API Endpoints
 ## API Endpoints
 
 ### Products
@@ -152,6 +154,7 @@ mock-ecommerce-cart/
 
 - `POST /api/orders` - Place order (reduces stock and clears cart)
 
+## Features in Detail
 ## Features in Detail
 
 ### Product Display
@@ -181,7 +184,6 @@ Potential features to add:
 
 - User authentication
 - Order history
-- Product search and filtering
 - Product categories
 - Payment integration
 - Admin panel for product management
@@ -215,6 +217,7 @@ Products are seeded automatically on first run. To add more products, you can ei
 - productId (TEXT, FOREIGN KEY)
 - quantity (INTEGER)
 
+## Troubleshooting
 ## Troubleshooting
 
 **Port already in use**
